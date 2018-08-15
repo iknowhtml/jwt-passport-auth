@@ -9,5 +9,6 @@ The `login` route accepts a `POST` request with `username` and `password` fields
 When the correct username and password are supplied to the `login` route, the server will return a JWT.
 
 The `authenticated` route accepts a 'GET' request with the parameter `secretToken`. To access the route, please specify the value of `secretToken` to be the JWT returned from the `login` route.
+
 Example:
 `localhost:9000/authenticated?secretToken=<INSERT JWT TOKEN HERE>`
