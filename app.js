@@ -14,7 +14,7 @@ const routes = require('./routes');
 app.use('/', routes);
 
 //handles errors
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   console.log(err);
   res.status(err.status || 500);
   res.json({ error: err.message });
