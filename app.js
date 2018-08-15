@@ -21,5 +21,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(9000, () => {
-  console.log('Server started. Listening on port 9000...');
+  console.log('Server listening to port 9000...');
 });
