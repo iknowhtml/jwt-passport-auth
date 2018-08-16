@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      window.addEventListener('load', async () => {
+        const token = localStorage.getItem('token');
+        const response = await fetch('/authenticate',
+          {
+            withCredentials: true,
+            credentials: 'include',
+            redirect: 'follow',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            }
+          }
+        );
+
+        const responseObj = await response.json();
+
+        if(responseObj.message){
+          window.location.href = '/';
+        }
+
+        async function getToken(username, password) {
+          const response = await fetch(
+            '/login',
+            {
+              method: 'post',
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+              },
+              body: `username=${username}&password=${password}`
+          });
+
+          const responseObj = await response.json();
+
+          return responseObj.token;
+        }
+
+        let form = document.getElementById('login');
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const username = form.elements.namedItem('username').value;
+          const password = form.elements.namedItem('password').value;
+
+          const token = await getToken(username, password);
+
+          localStorage.setItem('token', token);
+
+          window.location.href = '/';
+        })
+      });
+    </script>
+  </head>
+  <body>
+    <form id="login">
+      <div>
+        <label for="username">
+          Username: <input id="username" name="username" type="text">
+        </label>
+    </div>
+      <div>
+        <label for="password">
+          Password: <input id="password" name="password" type="text">
+        </label>
+      </div>
+      <button>Login</button>
+    </form>
+  </body>
+</html>
