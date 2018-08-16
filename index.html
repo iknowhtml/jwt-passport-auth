@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+      const token = localStorage.getItem('token');
+      fetch('/authenticate',
+        {
+          withCredentials: true,
+          credentials: 'include',
+          redirect: 'follow',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        }
+      ).then(async response => {
+        const responseObj = await response.json();
+
+        if(responseObj.error){
+          window.location.href = '/login';
+        }
+        console.log(responseObj);
+      });
+  </script>
+</head>
+<body>
+  <p>You are authenticated!</p>
+</body>
+</html>
