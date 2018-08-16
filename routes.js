@@ -4,6 +4,10 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
+router.get('/login', (req, res) => {
+  res.sendFile(`${__dirname}/login.html`);
+});
+
 router.post('/login', (req, res, next) => {
   passport.authenticate('login', (err, user, info) => {
     try {
@@ -14,11 +18,11 @@ router.post('/login', (req, res, next) => {
       // set {session: false} because don't want to store user details in session. expect user to send token on each request to secure routes. usefule for API's, can be used to track users, block, etc. But if you plan to use sessions with JWTs, not recommended performance wise.
       req.login(user, { session: false }, error => {
         if (error) return next(error);
+
         const token = jwt.sign(
           { username: user.username },
           'SUPER SECRET PHRASE',
         );
-
         res.json({ token });
       });
     } catch (error) {
@@ -27,7 +31,7 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-router.get('/authenticated', (req, res, next) => {
+router.get('/authenticate', (req, res, next) => {
   passport.authenticate('jwt', { session: false }, (err, user) => {
     if (err || !user) {
       const error = new Error('you are not authenticated');
@@ -36,9 +40,12 @@ router.get('/authenticated', (req, res, next) => {
     res.json({
       message: 'you are authenticated!',
       username: user,
-      token: req.query.secretToken,
     });
   })(req, res, next);
+});
+
+router.get('/', (req, res) => {
+  res.sendFile(`${__dirname}/index.html`);
 });
 
 module.exports = router;
