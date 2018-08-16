@@ -30,7 +30,7 @@ passport.use(
   new JWTStrategy(
     {
       secretOrKey: 'SUPER SECRET PHRASE',
-      jwtFromRequest: extractJWT.fromUrlQueryParameter('secretToken'),
+      jwtFromRequest: extractJWT.fromAuthHeaderAsBearerToken(),
     },
     async (token, done) => {
       try {
