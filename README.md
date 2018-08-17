@@ -6,7 +6,7 @@ Then run `yarn start` and navigate to the links below on `localhost:9000`.
 
 There are four available routes, `GET /`, `GET /login`, `POST /login` and `GET /authenticate`.
 
-The `GET /` route is only accessible if a valid JWT is stored in local storage. A valid JWT is saved to local storage only after properly authenticating through the `GET login`.
+The `GET /` route is only accessible if a valid JWT is stored in local storage. A valid JWT is saved to local storage only after properly authenticating through the `GET /login` route.
 
 The `GET /login` returns a page to login to see the index view.
 The correct username and password is _user_ and _password_ respectively.
