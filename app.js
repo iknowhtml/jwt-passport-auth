@@ -4,18 +4,25 @@ const morgan = require('morgan');
 
 const app = express();
 
-require('./passport');
-
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('tiny'));
 
-const routes = require('./routes');
+const example = process.env.EXAMPLE;
+let routes = null;
+
+switch (example) {
+  case 'jwt-auth':
+    require('./jwt-auth/passport');
+    routes = require('./jwt-auth/routes');
+    break;
+  default:
+    process.exit(1);
+}
 
 app.use('/', routes);
 
 //handles errors
 app.use((err, req, res, next) => {
-  console.log(err);
   res.status(err.status || 500);
   res.json({ error: err.message });
 });
