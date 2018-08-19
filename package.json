@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon app.js --exec node"
+    "start:jwt-auth": "EXAMPLE=jwt-auth nodemon app.js --exec node"
   },
   "dependencies": {
     "express": "^4.16.3",
