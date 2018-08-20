@@ -1,16 +1,11 @@
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 
-//Create passport middleware to handle user registration
+//Create passport middleware to handle user login
 passport.use(
-  'login',
+  'local',
   new localStrategy((username, password, done) => {
-    if (
-      username === null ||
-      username !== 'user' ||
-      password === null ||
-      password !== 'password'
-    ) {
+    if (username !== 'user' || password !== 'password') {
       return done(null, false, {
         message: 'username or password is incorrect',
       });

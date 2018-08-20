@@ -9,7 +9,7 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', (req, res, next) => {
-  passport.authenticate('login', (err, user, info) => {
+  passport.authenticate('local', (err, user, info) => {
     try {
       if (err || !user) {
         const error = new Error('login was not successful');
