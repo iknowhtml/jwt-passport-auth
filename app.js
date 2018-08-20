@@ -15,6 +15,13 @@ switch (example) {
     require('./jwt-auth/passport');
     routes = require('./jwt-auth/routes');
     break;
+  case 'redirects':
+    require('./redirects/passport');
+    routes = require('./redirects/routes');
+
+    app.use(passport.initialize());
+    app.use(passport.session());
+    break;
   default:
     process.exit(1);
 }
