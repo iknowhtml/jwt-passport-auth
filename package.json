@@ -1,10 +1,11 @@
 {
   "scripts": {
     "start:jwt-auth": "EXAMPLE=jwt-auth nodemon app.js --exec node",
-    "start:redirects": "EXAMPLE=redirects nodemon app.js --exec node"
+    "start:session-auth": "EXAMPLE=session-auth nodemon app.js --exec node"
   },
   "dependencies": {
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "jsonwebtoken": "^8.3.0",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",

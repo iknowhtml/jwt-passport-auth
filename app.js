@@ -15,9 +15,9 @@ switch (example) {
     require('./jwt-auth/passport');
     routes = require('./jwt-auth/routes');
     break;
-  case 'redirects':
-    require('./redirects/passport');
-    routes = require('./redirects/routes');
+  case 'session-auth':
+    require('./session-auth/passport');
+    routes = require('./session-auth/routes');
 
     app.use(passport.initialize());
     app.use(passport.session());
