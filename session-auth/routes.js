@@ -1,9 +1,10 @@
 const express = require('express');
 const passport = require('passport');
+const loggedIn = require('./middleware/loggedIn');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', loggedIn, (req, res) => {
   res.sendFile(`${__dirname}/index.html`);
 });
 
