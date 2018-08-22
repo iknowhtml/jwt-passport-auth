@@ -1,8 +1,16 @@
 function loggedIn(req, res, next) {
-  if (req.session && req.session.passport && req.session.passport.user) {
-    next();
+  if (req.user) {
+    if (req.path === '/login') {
+      res.redirect('/');
+    } else {
+      next();
+    }
   } else {
-    res.redirect('/login');
+    if (req.path === '/') {
+      res.redirect('/login');
+    } else {
+      next();
+    }
   }
 }
 
