@@ -8,7 +8,7 @@ router.get('/', loggedIn, (req, res) => {
   res.sendFile(`${__dirname}/index.html`);
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', loggedIn, (req, res) => {
   res.sendFile(`${__dirname}/login.html`);
 });
 
