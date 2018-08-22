@@ -1,5 +1,7 @@
 const express = require('express');
 const passport = require('passport');
+const session = require('express-session');
+
 const morgan = require('morgan');
 
 const app = express();
@@ -18,7 +20,13 @@ switch (example) {
   case 'session-auth':
     require('./session-auth/passport');
     routes = require('./session-auth/routes');
-
+    app.use(
+      session({
+        secret: 'SUPER SECRET PHRASE',
+        resave: false,
+        saveUninitialized: true,
+      }),
+    );
     app.use(passport.initialize());
     app.use(passport.session());
     break;
