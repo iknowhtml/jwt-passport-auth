@@ -18,9 +18,9 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  done(null, user);
+  done(null, user.username);
 });
 
-passport.deserializeUser((user, done) => {
-  done(null, user);
+passport.deserializeUser((username, done) => {
+  done(null, username);
 });
