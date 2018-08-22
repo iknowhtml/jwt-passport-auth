@@ -1,6 +1,5 @@
 function loggedIn(req, res, next) {
-  console.log(req.user);
-  if (req.user) {
+  if (req.session && req.session.passport && req.session.passport.user) {
     next();
   } else {
     res.redirect('/login');
