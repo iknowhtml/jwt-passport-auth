@@ -1,4 +1,4 @@
-# Simple JWT Passport authentication
+# Simple JWT Passport authentication (OUT OF DATE)
 
 To use, run the following command `yarn install` or `npm install` in your terminal.
 
