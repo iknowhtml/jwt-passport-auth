@@ -1,4 +1,4 @@
-# Simple Passport authentication
+# Simple Passport Authentication Examples
 
 To use, run the following command `yarn install` or `npm install` in your terminal.
 
